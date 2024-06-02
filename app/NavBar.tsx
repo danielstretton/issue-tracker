@@ -20,7 +20,7 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center">
+        <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center text-zinc-900">
             <Link href="/">
                 <AiFillBug />
             </Link>
@@ -30,7 +30,6 @@ const NavBar = () => {
                         <li key={link.href}>
                             <Link
                                 className={classNames({
-                                    "text-zinc-900": link.href === path,
                                     "text-zinc-500": link.href !== path,
                                     "hover:text-zinc-800 transition-colors":
                                         true,
