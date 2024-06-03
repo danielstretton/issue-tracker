@@ -7,7 +7,6 @@ import classNames from "classnames";
 
 const NavBar = () => {
     const path = usePathname();
-    console.log(path);
     const links = [
         {
             href: "/",
