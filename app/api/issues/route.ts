@@ -1,6 +1,6 @@
+import { createIssuesSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { createIssuesSchema } from "../../validationSchemas";
 
 export async function GET() {
     const issues = await prisma.issues.findMany();
