@@ -14,6 +14,8 @@ import {
 } from "@radix-ui/themes";
 
 const NavBar = () => {
+    const path = usePathname();
+
     return (
         <nav className="border-b mb-5 px-5 py-3 text-zinc-900">
             <Container>
@@ -22,10 +24,10 @@ const NavBar = () => {
                         <Link href="/">
                             <AiFillBug />
                         </Link>
-                        <MenuOptions />
+                        <MenuOptions path={path} />
                     </Flex>
                     <Box>
-                        <AuthStatus />
+                        <AuthStatus path={path} />
                     </Box>
                 </Flex>
             </Container>
@@ -33,9 +35,7 @@ const NavBar = () => {
     );
 };
 
-const MenuOptions = () => {
-    const path = usePathname();
-
+const MenuOptions = ({ path }: { path: string }) => {
     const links = [
         {
             href: "/",
@@ -46,7 +46,7 @@ const MenuOptions = () => {
             label: "Issues",
         },
     ];
-    console.log(path);
+
     return (
         <ul className="flex space-x-6">
             {links.map((link) => {
@@ -68,9 +68,7 @@ const MenuOptions = () => {
     );
 };
 
-const AuthStatus = () => {
-    const path = usePathname();
-
+const AuthStatus = ({ path }: { path: string }) => {
     const { status, data: session } = useSession();
 
     if (status === "loading") return null;
