@@ -69,13 +69,18 @@ const MenuOptions = () => {
 };
 
 const AuthStatus = () => {
+    const path = usePathname();
+
     const { status, data: session } = useSession();
 
     if (status === "loading") return null;
 
     if (status === "unauthenticated")
         return (
-            <Link className="nav-link" href="/api/auth/signin">
+            <Link
+                className="nav-link"
+                href={`/api/auth/signin?callbackUrl=${path}`}
+            >
                 Sign in
             </Link>
         );
@@ -96,7 +101,7 @@ const AuthStatus = () => {
                     <Text size="2">{session!.user!.email}</Text>
                 </DropdownMenu.Label>
                 <DropdownMenu.Item>
-                    <Link href="/api/auth/signout">Sign out</Link>
+                    <Link href="/api/auth/signout?callbackUrl=/">Sign out</Link>
                 </DropdownMenu.Item>
             </DropdownMenu.Content>
         </DropdownMenu.Root>

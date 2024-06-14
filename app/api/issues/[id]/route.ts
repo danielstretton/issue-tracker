@@ -1,7 +1,8 @@
+import AuthOptions from "@/app/auth/AuthOptions";
 import { issuesSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { NEVER } from "zod";
 
 export async function PATCH(
     req: NextRequest,
@@ -13,6 +14,14 @@ export async function PATCH(
         };
     }
 ) {
+    const session = await getServerSession(AuthOptions);
+    if (!session) {
+        return NextResponse.json(
+            { error: "You must be logged in to create an issue" },
+            { status: 401 }
+        );
+    }
+
     const body = await req.json();
 
     const validation = issuesSchema.safeParse(body);
@@ -57,6 +66,14 @@ export async function DELETE(
         };
     }
 ) {
+    const session = await getServerSession(AuthOptions);
+    if (!session) {
+        return NextResponse.json(
+            { error: "You must be logged in to create an issue" },
+            { status: 401 }
+        );
+    }
+
     const issue = await prisma.issues.findUnique({
         where: {
             id: parseInt(params.id),
