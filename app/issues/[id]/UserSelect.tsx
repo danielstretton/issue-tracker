@@ -4,7 +4,6 @@ import { User } from "@prisma/client";
 import { Select, Skeleton } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 const UserSelect = () => {
     const { data: users, isLoading } = useQuery({
