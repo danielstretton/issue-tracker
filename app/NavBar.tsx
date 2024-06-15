@@ -42,7 +42,7 @@ const MenuOptions = ({ path }: { path: string }) => {
             label: "Dashboard",
         },
         {
-            href: "/issues",
+            href: "/issues/list",
             label: "Issues",
         },
     ];
