@@ -68,7 +68,7 @@ const MenuOptions = ({ path }: { path: string }) => {
     );
 };
 
-const AuthStatus = ({ path }: { path: string }) => {
+export const AuthStatus = ({ path }: { path: string }) => {
     const { status, data: session } = useSession();
 
     if (status === "loading") return null;
